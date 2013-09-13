@@ -1,0 +1,38 @@
+/* 
+    Document   : index
+    Created on : Jul 9, 2013, 4:13:40 PM
+    Author     : Michelle
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.pageContainer{
+    width: 90%;
+    margin-left: 5%;
+}
+h1,h2,h3,strong, p{
+    text-align: center;
+}
+#ft{
+    margin-top: 8%;
+    font-size: 13px;
+}
+
+.content{
+    width: 80%;
+    margin-left: 10%;
+}
+
+#contentAudio{
+    margin-top: 10%;
+    width: 70%;
+    margin-left: 15%;
+}
+
+audio{
+    display: table; 
+    margin: 6% auto!important; 
+
+}
+
+
