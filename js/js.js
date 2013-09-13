@@ -1,63 +1,67 @@
 $(document).ready(function() {
     var ls = window.localStorage;
     var opsCount = 2;
-    $("#add_op").click(function() {
-        var maincontent = '<tr>';
-        maincontent += '<td><input type="text" name="op_name-' + opsCount + '" id="op_name-' + opsCount + '" /></td>';
-        maincontent += '<td><textarea placeholder="e.g. /subscriber/consent" name="base_url-' + opsCount + '" id="base_url-' + opsCount + '"></textarea></td>';
-        maincontent += '<td>';
-        maincontent += '<select name="ops_method-' + opsCount + '" id="ops_method-' + opsCount + '" class="form-alpha">';
-        maincontent += '<option value="GET" >GET</option>';
-        maincontent += '<option value="HEAD" >HEAD</option>';
-        maincontent += '<option value="POST" >POST</option>';
-        maincontent += '<option value="PUT" >PUT</option>';
-        maincontent += '<option value="DELETE" >DELETE</option>';
-        maincontent += '</select>';
-        maincontent += '</td>';
-        maincontent += '<td><input type="text" placeholder="e.g. Method" name="ops_type-' + opsCount + '" id="ops_type-' + opsCount + '" /></td>';
-        maincontent += '</tr>';
-        $('#op_summary').append(maincontent).trigger("create");
+    $('#add_op').click(function() {
+        $('#op_summary tr').eq(1).clone().find('input').val('').end()
+                .appendTo('#op_summary').trigger('creat')
+                .find("*[name]")
+                //.andSelf()
+                .each(function() {
+            $(this).attr("name", $(this).attr("name").replace(($(this).attr("name").charAt(4)), opsCount));
+        });
         opsCount++;
     });
+
     var formCount = 0;
     for (var key in ls) {
-        if (key.match('operations/form_name:operationsop_name-'))
-            //if(ls.getItem(key)!=='')
+        if (key.match('operations/form_name:operations:ops1'))
             formCount++;
     }
-
+    
+    formCount = (formCount-3)/4;
+    
     $('.hide').css('display', 'none');
     $('#gen_form').click(function() {
         $('this').hide();
-        //alert(formCount);
+        alert(formCount);
         for (var i = 1; i <= formCount; i++) {
             $('#default_operation').clone()
                     .appendTo('#input_form')
-                    .prepend('<h2>' + ls.getItem('operations/form_name:operationsop_name-' + i) + '</h2>')
+                    .prepend('<h2>' + ls.getItem('operations/form_name:operations:ops' + i +'_name') + '</h2>')
                     .css('display', 'block')
                     .attr('id', 'detail_' + i)
                     .sisyphus({timeout: 0});
         }
-
     });
     
+    var ipCount = 2;
+    $('#add_op').click(function() {
+        $('#op_summary tr').eq(1).clone().find('input').val('').end()
+                .appendTo('#op_summary').trigger('creat')
+                .find("*[name]")
+                .each(function() {
+            $(this).attr("name", $(this).attr("name").replace(($(this).attr("name").charAt(4)), opsCount));
+        });
+        opsCount++;
+    });
+
 
     $ids = $('form input[id]').map(function() {
         return this.id;
     }).get();
-    alert($ids);
 
-    $('#input_param').append(loadParam('IP', '01', 1)).trigger("create");
-    $('#input_obj').append(loadParam('IP_PRO', '01', 1)).trigger("create");
-    $('#output_param').append(loadParam('OP', '01', 1)).trigger("create");
-    $('#output_obj').append(loadParam('OP_PRO', '01', 1)).trigger("create");
-
-    var ipCount = 2;
+ var ipCount = 2;
     $("#input_form").on("click", "#add_input_param", function() {
-        var maincontent = loadParam('IP', '01', ipCount);
+        $('#input_param tr').eq(1).clone().find('input').val('').end()
+                .appendTo('#input_param > thead').trigger('creat')
+                .find("*[name]")
+                .andSelf()
+                .each(function() {
+            $(this).attr("name", $(this).attr("name").replace(($(this).attr("name").charAt(9)), ipCount));
+        });
         ipCount++;
-        $('#input_param > thead').append(maincontent).trigger("create");
     });
+
     var ipProCount = 2;
     $("#input_form").on("click", "#add_input_obj", function() {
         var maincontent = loadParam('IP_PRO', '01', ipProCount);
