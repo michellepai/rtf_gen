@@ -1,6 +1,5 @@
 $(document).ready(function() {
     var ls = window.localStorage;
-
     var opsCount = 2;
     $("#add_op").click(function() {
         var maincontent = '<tr>';
@@ -29,7 +28,6 @@ $(document).ready(function() {
 
     $('.hide').css('display', 'none');
     $('#gen_form').click(function() {
-        alert(formCount);
         $('this').hide();
         //alert(formCount);
         for (var i = 1; i <= formCount; i++) {
@@ -38,12 +36,16 @@ $(document).ready(function() {
                     .prepend('<h2>' + ls.getItem('operations/form_name:operationsop_name-' + i) + '</h2>')
                     .css('display', 'block')
                     .attr('id', 'detail_' + i)
-                    .sisyphus({timeout: 0})
-                    ;
-                    
+                    .sisyphus({timeout: 0});
         }
 
     });
+    
+
+    $ids = $('form input[id]').map(function() {
+        return this.id;
+    }).get();
+    alert($ids);
 
     $('#input_param').append(loadParam('IP', '01', 1)).trigger("create");
     $('#input_obj').append(loadParam('IP_PRO', '01', 1)).trigger("create");
