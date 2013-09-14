@@ -17,48 +17,38 @@ $(document).ready(function() {
         if (key.match('operations/form_name:operations:ops1'))
             formCount++;
     }
-    
-    formCount = (formCount-3)/4;
-    
+
+    formCount = (formCount - 3) / 4;
+
     $('.hide').css('display', 'none');
     $('#gen_form').click(function() {
         $('this').hide();
-        alert(formCount);
         for (var i = 1; i <= formCount; i++) {
             $('#default_operation').clone()
                     .appendTo('#input_form')
-                    .prepend('<h2>' + ls.getItem('operations/form_name:operations:ops' + i +'_name') + '</h2>')
+                    .prepend('<h2>' + ls.getItem('operations/form_name:operations:ops' + i + '_name') + '</h2>')
                     .css('display', 'block')
                     .attr('id', 'detail_' + i)
                     .sisyphus({timeout: 0});
         }
-    });
-    
-    var ipCount = 2;
-    $('#add_op').click(function() {
-        $('#op_summary tr').eq(1).clone().find('input').val('').end()
-                .appendTo('#op_summary').trigger('creat')
-                .find("*[name]")
-                .each(function() {
-            $(this).attr("name", $(this).attr("name").replace(($(this).attr("name").charAt(4)), opsCount));
-        });
-        opsCount++;
     });
 
 
     $ids = $('form input[id]').map(function() {
         return this.id;
     }).get();
+    
 
- var ipCount = 2;
+    var ipCount = 2;
     $("#input_form").on("click", "#add_input_param", function() {
         $('#input_param tr').eq(1).clone().find('input').val('').end()
                 .appendTo('#input_param > thead').trigger('creat')
+                .children()
+//                .find("input")
                 .find("*[name]")
-                .andSelf()
                 .each(function() {
-            $(this).attr("name", $(this).attr("name").replace(($(this).attr("name").charAt(9)), ipCount));
-        });
+            $(this).attr("name", $(this).attr("name").replace(($(this).attr("name").charAt(4)), opsCount));
+                });
         ipCount++;
     });
 
