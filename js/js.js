@@ -5,7 +5,6 @@ $(document).ready(function() {
         $('#op_summary tr').eq(1).clone().find('input').val('').end()
                 .appendTo('#op_summary').trigger('creat')
                 .find("*[name]")
-                //.andSelf()
                 .each(function() {
             $(this).attr("name", $(this).attr("name").replace(($(this).attr("name").charAt(4)), opsCount));
         });
@@ -43,11 +42,10 @@ $(document).ready(function() {
     $("#input_form").on("click", "#add_input_param", function() {
         $('#input_param tr').eq(1).clone().find('input').val('').end()
                 .appendTo('#input_param > thead').trigger('creat')
-                .children()
-//                .find("input")
-                .find("*[name]")
+                .find('*[name]')
                 .each(function() {
-            $(this).attr("name", $(this).attr("name").replace(($(this).attr("name").charAt(4)), opsCount));
+            alert( $(this).attr('name'));
+            $(this).attr( { name: 'new-id' } );
                 });
         ipCount++;
     });
