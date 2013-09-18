@@ -10,6 +10,7 @@
         <script src="https://d10ajoocuyu32n.cloudfront.net/jquery-1.9.1.min.js"></script>
         <script src="https://d10ajoocuyu32n.cloudfront.net/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
         <script src="js/js.js"></script>
+        <script src="js/download.js"></script>
         <script src="js/sisyphus.min.js"></script>
     </head>
     <body>
@@ -173,43 +174,47 @@
                         <h4>
                             3.3.5.1 Structure of Private Request Object
                         </h4>
-                        <fieldset>
+                        <div id="head_ipProObj">
+                            <fieldset>
                                 <legend>Object name:</legend>
-                        <input type="text" name=":ops1/6/2/1_param" />
-                        </fieldset>
-                        <table id="input_obj" data-role="table" class="ui-responsive table-stroke indent">
-                            <thead>
-                                <tr>
-                                    <th>Parameter</th> 
-                                    <th>Data Type</th>
-                                    <th>Required</th>
-                                    <th>Brief description</th>
-                                    <th>Location in Request</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input type="text" name=":ops1/6/2/1_param" /></td>
-                                    <td><input type="text" name=":ops1/6/2/1_type" /></td>
-                                    <td>
-                                        <select name=":ops1/6/2/1_required">
-                                            <option value="Mandatory" >Mandatory</option>
-                                            <option value="Optional" >Optional</option>
-                                            <option value="Conditional" >Conditional</option>
-                                        </select>
-                                    </td>
-                                    <td><textarea name=":ops1/6/2/1_desc"></textarea></td>
-                                    <td>
-                                        <select name=":ops1/6/2/1_location">
-                                            <option value="Header" >Header</option>
-                                            <option value="Body" >Body</option>
-                                            <option value="Query_param" >Query Parameter</option>
-                                            <option value="Resource_uri" >Resource URI</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                <input type="text" name=":ops1/6/2/1_param" />
+                            </fieldset>
+
+
+                            <table id="input_obj" data-role="table" class="ui-responsive table-stroke indent">
+                                <thead>
+                                    <tr>
+                                        <th>Parameter</th> 
+                                        <th>Data Type</th>
+                                        <th>Required</th>
+                                        <th>Brief description</th>
+                                        <th>Location in Request</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="text" name=":ops1/6/2/1_param" /></td>
+                                        <td><input type="text" name=":ops1/6/2/1_type" /></td>
+                                        <td>
+                                            <select name=":ops1/6/2/1_required">
+                                                <option value="Mandatory" >Mandatory</option>
+                                                <option value="Optional" >Optional</option>
+                                                <option value="Conditional" >Conditional</option>
+                                            </select>
+                                        </td>
+                                        <td><textarea name=":ops1/6/2/1_desc"></textarea></td>
+                                        <td>
+                                            <select name=":ops1/6/2/1_location">
+                                                <option value="Header" >Header</option>
+                                                <option value="Body" >Body</option>
+                                                <option value="Query_param" >Query Parameter</option>
+                                                <option value="Resource_uri" >Resource URI</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <input type="button" id="add_input_obj_param" value="+ Add Object Parameter" data-inline="true"  />
                         <input type="button" id="add_input_obj" value="+ Add Object" data-inline="true"  />
                         <div id="example_req">
@@ -277,9 +282,9 @@
                         <table id="http_resp_code" data-role="table" class="ui-responsive table-stroke">
                             <thead>
                                 <tr>
-                                    <th ="1">Code</th>
-                                    <th ="2">Message</th>
-                                    <th ="3">Description</th>
+                                    <th>Code</th>
+                                    <th>Message</th>
+                                    <th>Description</th>
                                 </tr>
                                 <tr>
                                     <td>200</td>
@@ -340,7 +345,8 @@
 
                 </div><!-- end of input_form -->
                 <input type="button" id="form_op_01_clear" value="Clear All" data-icon="delete" />
-                <input type="button" id="form_op_01_sumit" value="Submit" data-icon="check" />
+                <!--                <input type="button" id="form_op_01_sumit" value="Submit" data-icon="check" />-->
+                <input type="button" id="btn_download" value="Download Word Document" />
 
             </div> <!-- end of content -->
             <div id="ft">

@@ -3,7 +3,7 @@ $(document).ready(function() {
     var opsCount = 2;
     $('#add_op').click(function() {
         $('#op_summary tr').eq(1).clone().find('input').val('').end()
-                .appendTo('#op_summary').trigger('creat')
+                .appendTo('#op_summary')
                 .find("*[name]")
                 .each(function() {
             $(this).attr("name", $(this).attr("name").replace(($(this).attr("name").charAt(4)), opsCount));
@@ -11,50 +11,52 @@ $(document).ready(function() {
         opsCount++;
     });
 
-    var formCount = 0;
-    for (var key in ls) {
-        if (key.match('operations/form_name:operations:ops1'))
-            formCount++;
-    }
-
-    formCount = (formCount - 3) / 4;
+//need to find a way to perform better ops count
 
     $('.hide').css('display', 'none');
     $('#gen_form').click(function() {
         $('this').hide();
-        for (var i = 1; i <= formCount; i++) {
+        for (var i = 1; i <= opsCount; i++) {
             $('#default_operation').clone()
                     .appendTo('#input_form')
                     .prepend('<h2>' + ls.getItem('operations/form_name:operations:ops' + i + '_name') + '</h2>')
                     .css('display', 'block')
                     .attr('id', 'detail_' + i)
-                    .sisyphus({timeout: 0});
+                    .sisyphus({timeout: 10});
         }
     });
-
-
-    $ids = $('form input[id]').map(function() {
-        return this.id;
-    }).get();
     
-
     var ipCount = 2;
     $("#input_form").on("click", "#add_input_param", function() {
         $('#input_param tr').eq(1).clone().find('input').val('').end()
-                .appendTo('#input_param > thead').trigger('creat')
+                .appendTo('#input_param > tbody')
                 .find('*[name]')
                 .each(function() {
-            alert( $(this).attr('name'));
-            $(this).attr( { name: 'new-id' } );
-                });
+            $(this).attr("name", (function() {
+                return $(this).attr("name").slice(0, 10) + ipCount + $(this).attr("name").slice(11);
+            }));
+        });
         ipCount++;
     });
 
     var ipProCount = 2;
-    $("#input_form").on("click", "#add_input_obj", function() {
-        var maincontent = loadParam('IP_PRO', '01', ipProCount);
+    $("#input_form").on("click", "#add_input_obj_param", function() {
+        $('#input_obj tr').eq(1).clone().find('input').val('').end()
+                .appendTo('#input_obj > tbody')
+                .find('*[name]')
+                .each(function() {
+            $(this).attr("name", (function() {
+                return $(this).attr("name").slice(0, 10) + ipProCount + $(this).attr("name").slice(11);
+            }));
+        });
         ipProCount++;
-        $('#input_obj > thead').append(maincontent).trigger("create");
+    });
+
+    var ipProObjCount = 2;
+    $("#input_form").on("click", "#add_input_obj", function() {
+        $('#head_ipProObj').clone()
+                .append('#head_ipProObj').trigger('create');
+        ipProObjCount++;
     });
 
     var opCount = 2;
@@ -127,7 +129,7 @@ $(document).ready(function() {
     })(jQuery);
     $(function() {
         $("form").sisyphus({
-            timeout: 10});
+            timeout: 1000});
     });
     $("#form_op_01_clear").click(function() {
         ls.clear();
@@ -141,29 +143,5 @@ $(document).ready(function() {
         window.open('output.html', '_blank');
     });
 
-    function loadParam(IO, form_number, counter) {
-        var id = IO + form_number + '-' + counter;
-        var maincontent = '<tr>';
-        maincontent += '<td><input type="text" name="param' + id + '" id="param' + id + '" value="" /></td>';
-        maincontent += '<td><input type="text" name="data_type' + id + '" id="data_type' + id + '" /></td>';
-        maincontent += '<td>';
-        maincontent += '<select id="required" name="req' + id + '" id="req' + id + '"class="form-alpha">';
-        maincontent += '<option value="Mandatory" >Mandatory</option>';
-        maincontent += '<option value="Optional" >Optional</option>';
-        maincontent += '<option value="Conditional" >Conditional</option>';
-        maincontent += '</select>';
-        maincontent += '</td>';
-        maincontent += '<td><textarea name="des' + id + '" id="des' + id + '" ></textarea></td>';
-        maincontent += '<td>';
-        maincontent += '<select name="location' + id + '" id="location' + id + '" class="form-alpha">';
-        maincontent += '<option value="Header" >Header</option>';
-        maincontent += '<option value="Body" >Body</option>';
-        maincontent += '<option value="Query_param" >Query Parameter</option>';
-        maincontent += '<option value="Resource_uri" >Resource URI</option>';
-        maincontent += '</select>';
-        maincontent += '</td>';
-        maincontent += '</tr>';
-        return maincontent;
-    }
 });
 
