@@ -15,17 +15,46 @@ $(document).ready(function() {
 
     $('.hide').css('display', 'none');
     $('#gen_form').click(function() {
-        $('this').hide();
-        for (var i = 1; i <= opsCount; i++) {
-            $('#default_operation').clone()
-                    .appendTo('#input_form')
+        for (var i = 1; i <= 4; i++) {
+            cloneDiv = $('#default_operation').clone();
+            cloneDiv.appendTo('#input_form')
                     .prepend('<h2>' + ls.getItem('operations/form_name:operations:ops' + i + '_name') + '</h2>')
                     .css('display', 'block')
                     .attr('id', 'detail_' + i)
-                    .sisyphus({timeout: 10});
+                    .sisyphus({timeout: 5});
+            cloneDiv.find('*[name]').each(function() {
+                var new_name = $(this).attr("name").slice(0, 4) + i + $(this).attr("name").slice(5);
+                this.name = new_name;
+                this.id = new_name;
+                console.log('name: ' + this.name + ' id: ' + this.id);
+            });
+            //change the button name so I can get the button id to match the table id to clone new input row.
+            cloneDiv.find(':button.btn_clone').each(function() {
+                console.log('buttn: ' + this.id);
+                var new_id = $(this).attr("id").slice(0, 6) + i + $(this).attr("id").slice(7);
+                this.id = new_id;
+                console.log('buttn new: ' + new_id);
+            });
+            cloneDiv.find('table.tbl_clone').each(function() {
+                var new_id = $(this).attr("id").slice(0, 6) + i + $(this).attr("id").slice(7);
+                this.id = new_id;
+                console.log('table: ' + new_id);
+
+            });
         }
     });
-    
+
+    //here doesn't clone....
+    $('#input_form').on('click', '.btn_clone', function() {
+        var b_id = $(this).attr('id');
+        var t_id = '#t' + b_id.substring(1).replace(/[!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&");
+        console.log(this.id + ' with ' + t_id);
+        $(t_id + ' tr').eq(1).clone().find('input')
+                .val('').end()
+                .appendTo(t_id);
+    });
+
+
     var ipCount = 2;
     $("#input_form").on("click", "#add_input_param", function() {
         $('#input_param tr').eq(1).clone().find('input').val('').end()
@@ -55,7 +84,7 @@ $(document).ready(function() {
     var ipProObjCount = 2;
     $("#input_form").on("click", "#add_input_obj", function() {
         $('#head_ipProObj').clone()
-                .append('#head_ipProObj').trigger('create');
+                .insertAfter('#head_ipProObj').trigger('create');
         ipProObjCount++;
     });
 

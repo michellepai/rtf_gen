@@ -136,7 +136,7 @@
                         <h4>
                             3.3.5 Input Parameters
                         </h4>
-                        <table id="input_param" >
+                        <table id="t_:ops1/6/1" class='tbl_clone'>
                             <thead>
                                 <tr>
                                     <th>Parameter</th>
@@ -169,7 +169,7 @@
                                 </tr>
                             </tbody>
                         </table>     
-                        <input type="button" id="add_input_param" value="+ Add Input Parameter" data-inline="true" /><br />
+                        <input type="button" id="b_:ops1/6/1" class='btn_clone' value="+ Add Input Parameter" data-inline="true" /><br />
 
                         <h4>
                             3.3.5.1 Structure of Private Request Object
@@ -181,7 +181,7 @@
                             </fieldset>
 
 
-                            <table id="input_obj" data-role="table" class="ui-responsive table-stroke indent">
+                            <table id="t_:ops1/6/2" class='tbl_clone' data-role="table" class="ui-responsive table-stroke indent">
                                 <thead>
                                     <tr>
                                         <th>Parameter</th> 
@@ -215,7 +215,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <input type="button" id="add_input_obj_param" value="+ Add Object Parameter" data-inline="true"  />
+                        <input type="button" id="b_:ops1/6/2" class='btn_clone' value="+ Add Object Parameter" data-inline="true"  />
                         <input type="button" id="add_input_obj" value="+ Add Object" data-inline="true"  />
                         <div id="example_req">
                             <h4>
@@ -231,7 +231,7 @@
                         <h4>
                             3.3.6 Output Parameters: 
                         </h4>
-                        <table id="output_param" data-role="table" class="ui-responsive table-stroke">
+                        <table id="t_:ops1/6/3" class='tbl_clone' data-role="table" class="ui-responsive table-stroke">
                             <thead>
                                 <tr>
                                     <th>Parameter</th>
@@ -242,15 +242,35 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" name=":ops1/6/3/1_param" /></td>
+                                    <td><input type="text" name=":ops1/6/3/1_type" /></td>
+                                    <td>
+                                        <select name=":ops1/6/3/1_required">
+                                            <option value="Mandatory" >Mandatory</option>
+                                            <option value="Optional" >Optional</option>
+                                            <option value="Conditional" >Conditional</option>
+                                        </select>
+                                    </td>
+                                    <td><textarea name=":ops1/6/3/1_desc"></textarea></td>
+                                    <td>
+                                        <select name=":ops1/6/3/1_location">
+                                            <option value="Header" >Header</option>
+                                            <option value="Body" >Body</option>
+                                            <option value="Query_param" >Query Parameter</option>
+                                            <option value="Resource_uri" >Resource URI</option>
+                                        </select>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
-                        <input type="button" id="add_output_param" value="+ Add Output Parameter" data-inline="true" /><br />
+                        <input type="button" id="b_:ops1/6/3" class='btn_clone' value="+ Add Output Parameter" data-inline="true" /><br />
 
                         <h4>
                             3.3.6.1 Structure of Private Request Object
                         </h4>
-                        <table id="output_obj" data-role="table" class="ui-responsive table-stroke">
+                        <table id="t_:ops1/6/4" class='tbl_clone' data-role="table" class="ui-responsive table-stroke">
                             <thead>
                                 <tr>
                                     <th>Parameter</th>
@@ -264,7 +284,7 @@
                             </tbody>
                         </table>
 
-                        <input type="button" id="add_output_obj" value="+ Add Output Private Request Object" data-inline="true" /><br />
+                        <input type="button" id="b_:ops1/6/4" class='btn_clone' value="+ Add Output Private Request Object" data-inline="true" /><br />
                         <div id="example_resp">
                             <h4>
                                 3.3.6.2 Response Example
