@@ -1,16 +1,15 @@
 <html lang="en">
-    <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
         <title>RTF Document Generator UI</title>
-        <link rel="stylesheet" href="https://codiqa.com/view/88294ee7/css">
-        <link rel="stylesheet" href="https://d10ajoocuyu32n.cloudfront.net/mobile/1.3.1/jquery.mobile-1.3.1.min.css">
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
         <link rel="stylesheet" href="style.css" />
-        <script src="https://d10ajoocuyu32n.cloudfront.net/jquery-1.9.1.min.js"></script>
-        <script src="https://d10ajoocuyu32n.cloudfront.net/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
+        <script src="http://malsup.github.com/jquery.form.js"></script>
         <script src="js/js.js"></script>
-        <script src="js/download.js"></script>
         <script src="js/sisyphus.min.js"></script>
     </head>
     <body>
@@ -20,9 +19,9 @@
                 <div class="contentHeading">
                     <h1>RTF Document Generator UI</h1>  
                 </div><!-- end of contentHeading -->
-                <div id="input_form">
-                    <form id="operations" name="/form_name:operations">
 
+                <form id="spec_form" name="/spec_form" action="json-echo.php" method="post">
+                    <div id="input_form">
                         <h3>
                             3.2 API Version Status
                         </h3>
@@ -73,111 +72,68 @@
                             </tbody>
                         </table>
                         <input type="button" id="add_op" value="+ Add Operation" />
-                    
-                    <input type="button" id="gen_form" value="Insert Operation Details" />
-                    <div  id="default_operation" name="/form_name:ops_detail" class="hide">
-                        <h4>3.3.1 Function Behavior: </h4>
-                        <textarea cols="40" rows="8" name=":ops1/1" placeholder="This Method is used to...." ></textarea>
-                        <h4>3.3.2 Call Flow: </h4>
-                        <textarea cols="40" rows="8" name=":ops1/2" placeholder="<>" ></textarea>
-                        <h4>3.2.3 Version Impact Summary: </h4>
-                        <textarea cols="40" rows="8" name=":ops1/3" placeholder="<>" ></textarea>
-                        <h4>
-                            3.3.4 Authentication and Authorization
-                        </h4>
-                        <table id="auth" data-role="table" class="ui-responsive table-stroke">
-                            <thead>
-                                <tr>
-                                    <th>Authentication</th>
-                                    <th>Subscriber Authorization required?</th>
-                                    <th>OAuth Scope Value</th>
-                                    <th>Brief Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th><input type="text" name=":ops1/4_auth" placeholder="e.g. Client Credentials"/></th>
-                                    <td>
-                                        <select name=":ops1/4_reqi" class="form-alpha">
-                                            <option value="YES" >YES</option>
-                                            <option value="NO" >NO</option>
-                                            <option value="N/A" >N/A</option>
-                                        </select>
-                                    </td>
-                                    <td><input type="text" name=":ops1/4_scope"/></td>
-                                    <td><textarea name=":ops1/4_dsc"></textarea></td>
-                                </tr>
-                            </tbody>
-                        </table>
 
-                        <h4>
-                            3.3.4 Representation Formats
-                        </h4>
-                        <table id="format" data-role="table" id="table-column-toggle" class="ui-responsive table-stroke">
-                            <thead>
-                                <tr>
-                                    <th>Direction</th>
-                                    <th>Support Representation Formats</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th>Request</th>
-                                    <td><input type="text" name=":ops1/5_req" placeholder="e.g. JSON, XML"/></td>
-                                </tr>
-                                <tr>
-                                    <th>Response</th>
-                                    <td><input type="text" name=":ops1/5_resp" placeholder="e.g. JSON, XML"/></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <h4>
-                            3.3.5 Input Parameters
-                        </h4>
-                        <table id="t_:ops1/6/1" class='tbl_clone'>
-                            <thead>
-                                <tr>
-                                    <th>Parameter</th>
-                                    <th>Data Type</th>
-                                    <th>Required</th>
-                                    <th>Description</th>
-                                    <th>Location</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input type="text" name=":ops1/6/1/1_param" /></td>
-                                    <td><input type="text" name=":ops1/6/1/1_type" /></td>
-                                    <td>
-                                        <select id="required" name=":ops1/6/1/1_required">
-                                            <option value="Mandatory" >Mandatory</option>
-                                            <option value="Optional" >Optional</option>
-                                            <option value="Conditional" >Conditional</option>
-                                        </select>
-                                    </td>
-                                    <td><textarea name=":ops1/6/1/1_desc"></textarea></td>
-                                    <td>
-                                        <select name=":ops1/6/1/1_location">
-                                            <option value="Header" >Header</option>
-                                            <option value="Body" >Body</option>
-                                            <option value="Query_param" >Query Parameter</option>
-                                            <option value="Resource_uri" >Resource URI</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>     
-                        <input type="button" id="b_:ops1/6/1" class='btn_clone' value="+ Add Input Parameter" data-inline="true" /><br />
-                        <div id="head_ipProObj">
+                        <input type="button" id="gen_form" value="Insert Operation Details" />
+                        <div id="default_operation" class="hide">
+                            <h4>3.3.1 Function Behavior: </h4>
+                            <textarea cols="40" rows="8" name=":ops1/1" placeholder="This Method is used to...." ></textarea>
+                            <h4>3.3.2 Call Flow: </h4>
+                            <textarea cols="40" rows="8" name=":ops1/2" placeholder="<>" ></textarea>
+                            <h4>3.2.3 Version Impact Summary: </h4>
+                            <textarea cols="40" rows="8" name=":ops1/3" placeholder="<>" ></textarea>
                             <h4>
-                                3.3.5.1 Input Structure of Private Request Object
+                                3.3.4 Authentication and Authorization
                             </h4>
+                            <table id="auth" data-role="table" class="ui-responsive table-stroke">
+                                <thead>
+                                    <tr>
+                                        <th>Authentication</th>
+                                        <th>Subscriber Authorization required?</th>
+                                        <th>OAuth Scope Value</th>
+                                        <th>Brief Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th><input type="text" name=":ops1/4_auth" placeholder="e.g. Client Credentials"/></th>
+                                        <td>
+                                            <select name=":ops1/4_reqi" class="form-alpha">
+                                                <option value="YES" >YES</option>
+                                                <option value="NO" >NO</option>
+                                                <option value="N/A" >N/A</option>
+                                            </select>
+                                        </td>
+                                        <td><input type="text" name=":ops1/4_scope"/></td>
+                                        <td><textarea name=":ops1/4_dsc"></textarea></td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
-                            <fieldset>
-                                <legend>Object name:</legend>
-                                <input type="text" name=":ops1/6/2/1_name" />
-                            </fieldset>
-                            <table id="t_:ops1/6/2" class='tbl_clone' data-role="table" class="ui-responsive table-stroke indent">
+                            <h4>
+                                3.3.4 Representation Formats
+                            </h4>
+                            <table id="format" data-role="table" id="table-column-toggle" class="ui-responsive table-stroke">
+                                <thead>
+                                    <tr>
+                                        <th>Direction</th>
+                                        <th>Support Representation Formats</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>Request</th>
+                                        <td><input type="text" name=":ops1/5_req" placeholder="e.g. JSON, XML"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Response</th>
+                                        <td><input type="text" name=":ops1/5_resp" placeholder="e.g. JSON, XML"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h4>
+                                3.3.5 Input Parameters
+                            </h4>
+                            <table id="t_:ops1/6/1" class='tbl_clone'>
                                 <thead>
                                     <tr>
                                         <th>Parameter</th>
@@ -189,18 +145,18 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input type="text" name=":ops1/6/2/1_param" /></td>
-                                        <td><input type="text" name=":ops1/6/2/1_type" /></td>
+                                        <td><input type="text" name=":ops1/6/1/1_param" /></td>
+                                        <td><input type="text" name=":ops1/6/1/1_type" /></td>
                                         <td>
-                                            <select name=":ops1/6/2/1_required">
+                                            <select id="required" name=":ops1/6/1/1_required">
                                                 <option value="Mandatory" >Mandatory</option>
                                                 <option value="Optional" >Optional</option>
                                                 <option value="Conditional" >Conditional</option>
                                             </select>
                                         </td>
-                                        <td><textarea name=":ops1/6/2/1_desc"></textarea></td>
+                                        <td><textarea name=":ops1/6/1/1_desc"></textarea></td>
                                         <td>
-                                            <select name=":ops1/6/2/1_location">
+                                            <select name=":ops1/6/1/1_location">
                                                 <option value="Header" >Header</option>
                                                 <option value="Body" >Body</option>
                                                 <option value="Query_param" >Query Parameter</option>
@@ -209,77 +165,76 @@
                                         </td>
                                     </tr>
                                 </tbody>
-                            </table>
-                            <input type="button" id="b_:ops1/6/2" class='btn_clone' value="+ Add Object Parameter" data-inline="true"  />
-                            <input type="button" id="add_input_obj" value="+ Add Object" data-inline="true"  />
-                        </div>
-                        <div id="example_req">
+                            </table>     
+                            <input type="button" id="b_:ops1/6/1" class='btn_clone' value="+ Add Input Parameter" data-inline="true" /><br />
+                            <div id="head_ipProObj">
+                                <h4>
+                                    3.3.5.1 Input Structure of Private Request Object
+                                </h4>
+
+                                <fieldset>
+                                    <legend>Object name:</legend>
+                                    <input type="text" name=":ops1/6/2/1_name" />
+                                </fieldset>
+                                <table id="t_:ops1/6/2" class='tbl_clone' data-role="table" class="ui-responsive table-stroke indent">
+                                    <thead>
+                                        <tr>
+                                            <th>Parameter</th>
+                                            <th>Data Type</th>
+                                            <th>Required</th>
+                                            <th>Description</th>
+                                            <th>Location</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text" name=":ops1/6/2/1_param" /></td>
+                                            <td><input type="text" name=":ops1/6/2/1_type" /></td>
+                                            <td>
+                                                <select name=":ops1/6/2/1_required">
+                                                    <option value="Mandatory" >Mandatory</option>
+                                                    <option value="Optional" >Optional</option>
+                                                    <option value="Conditional" >Conditional</option>
+                                                </select>
+                                            </td>
+                                            <td><textarea name=":ops1/6/2/1_desc"></textarea></td>
+                                            <td>
+                                                <select name=":ops1/6/2/1_location">
+                                                    <option value="Header" >Header</option>
+                                                    <option value="Body" >Body</option>
+                                                    <option value="Query_param" >Query Parameter</option>
+                                                    <option value="Resource_uri" >Resource URI</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <input type="button" id="b_:ops1/6/2" class='btn_clone' value="+ Add Object Parameter" data-inline="true"  />
+                                <input type="button" id="add_input_obj" value="+ Add Object" data-inline="true"  />
+                            </div>
+                            <div id="example_req">
+                                <h4>
+                                    3.3.5.2 Input Request Example
+                                </h4>
+                                <table id="t_:ops1/6/3" class='tbl_clone' data-role="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Type:</th>
+                                            <th>Example:</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text" name=":ops1/6/3/1_type" placeholder="Example Type e.g. JSON"/></td>
+                                            <td ><textarea name=":ops1/6/3/1_example" placeholder="e.g. PUT /v1/subscribers/privacy HTTP/1.1"></textarea></td>
+                                    </tbody>
+                                </table>
+                                <input type="button" id="b_:ops1/6/3" value="+ Add Example" class='btn_clone' data-inline="true" />
+                            </div>
                             <h4>
-                                3.3.5.2 Input Request Example
+                                3.3.6 Output Parameters: 
                             </h4>
-                            <table id="t_:ops1/6/3" class='tbl_clone' data-role="table">
-                                <thead>
-                                    <tr>
-                                        <th>Type:</th>
-                                        <th>Example:</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><input type="text" name=":ops1/6/3/1_type" placeholder="Example Type e.g. JSON"/></td>
-                                        <td ><textarea name=":ops1/6/3/1_example" placeholder="e.g. PUT /v1/subscribers/privacy HTTP/1.1"></textarea></td>
-                                </tbody>
-                            </table>
-                            <input type="button" id="b_:ops1/6/3" value="+ Add Example" class='btn_clone' data-inline="true" />
-                        </div>
-                        <h4>
-                            3.3.6 Output Parameters: 
-                        </h4>
-                        <table id="t_:ops1/7/1" class='tbl_clone' data-role="table" >
-                            <thead>
-                                <tr>
-                                    <th>Parameter</th>
-                                    <th>Data Type</th>
-                                    <th>Required</th>
-                                    <th>Description</th>
-                                    <th>Location</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr>
-                                    <td><input type="text" name=":ops1/7/1/1_param" /></td>
-                                    <td><input type="text" name=":ops1/7/1/1_type" /></td>
-                                    <td>
-                                        <select name=":ops1/7/1/1_required">
-                                            <option value="Mandatory" >Mandatory</option>
-                                            <option value="Optional" >Optional</option>
-                                            <option value="Conditional" >Conditional</option>
-                                        </select>
-                                    </td>
-                                    <td><textarea name=":ops1/7/1/1_desc"></textarea></td>
-                                    <td>
-                                        <select name=":ops1/7/1/1_location">
-                                            <option value="Header" >Header</option>
-                                            <option value="Body" >Body</option>
-                                            <option value="Query_param" >Query Parameter</option>
-                                            <option value="Resource_uri" >Resource URI</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <input type="button" id="b_:ops1/7/1" class='btn_clone' value="+ Add Output Parameter" data-inline="true" /><br />
-
-                        <h4>
-                            3.3.6.1 Output Structure of Private Request Object
-                        </h4>
-                        <div id="head_opProObj">
-                            <fieldset>
-                                <legend>Object name:</legend>
-                                <input type="text" name=":ops1/6/4/1_param" />
-                            </fieldset>
-                            <table id="t_:ops1/7/2" class='tbl_clone' data-role="table" class="ui-responsive table-stroke">
+                            <table id="t_:ops1/7/1" class='tbl_clone' data-role="table" >
                                 <thead>
                                     <tr>
                                         <th>Parameter</th>
@@ -289,20 +244,21 @@
                                         <th>Location</th>
                                     </tr>
                                 </thead>
+
                                 <tbody>
                                     <tr>
-                                        <td><input type="text" name=":ops1/7/2/1_param" /></td>
-                                        <td><input type="text" name=":ops1/7/2/1_type" /></td>
+                                        <td><input type="text" name=":ops1/7/1/1_param" /></td>
+                                        <td><input type="text" name=":ops1/7/1/1_type" /></td>
                                         <td>
-                                            <select name=":ops1/7/2/1_required">
+                                            <select name=":ops1/7/1/1_required">
                                                 <option value="Mandatory" >Mandatory</option>
                                                 <option value="Optional" >Optional</option>
                                                 <option value="Conditional" >Conditional</option>
                                             </select>
                                         </td>
-                                        <td><textarea name=":ops1/7/2/1_desc"></textarea></td>
+                                        <td><textarea name=":ops1/7/1/1_desc"></textarea></td>
                                         <td>
-                                            <select name=":ops1/7/2/1_location">
+                                            <select name=":ops1/7/1/1_location">
                                                 <option value="Header" >Header</option>
                                                 <option value="Body" >Body</option>
                                                 <option value="Query_param" >Query Parameter</option>
@@ -312,105 +268,144 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
+                            <input type="button" id="b_:ops1/7/1" class='btn_clone' value="+ Add Output Parameter" data-inline="true" /><br />
 
-                        <input type="button" id="b_:ops1/7/2" class='btn_clone' value="+ Add Output Private Request Object" data-inline="true" /><br />
-                        <div id="example_resp">
                             <h4>
-                                3.3.5.2 Input Request Example
+                                3.3.6.1 Output Structure of Private Request Object
                             </h4>
-                            <table id="t_:ops1/7/3" class='tbl_clone' data-role="table">
+                            <div id="head_opProObj">
+                                <fieldset>
+                                    <legend>Object name:</legend>
+                                    <input type="text" name=":ops1/6/4/1_param" />
+                                </fieldset>
+                                <table id="t_:ops1/7/2" class='tbl_clone' data-role="table" class="ui-responsive table-stroke">
+                                    <thead>
+                                        <tr>
+                                            <th>Parameter</th>
+                                            <th>Data Type</th>
+                                            <th>Required</th>
+                                            <th>Description</th>
+                                            <th>Location</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text" name=":ops1/7/2/1_param" /></td>
+                                            <td><input type="text" name=":ops1/7/2/1_type" /></td>
+                                            <td>
+                                                <select name=":ops1/7/2/1_required">
+                                                    <option value="Mandatory" >Mandatory</option>
+                                                    <option value="Optional" >Optional</option>
+                                                    <option value="Conditional" >Conditional</option>
+                                                </select>
+                                            </td>
+                                            <td><textarea name=":ops1/7/2/1_desc"></textarea></td>
+                                            <td>
+                                                <select name=":ops1/7/2/1_location">
+                                                    <option value="Header" >Header</option>
+                                                    <option value="Body" >Body</option>
+                                                    <option value="Query_param" >Query Parameter</option>
+                                                    <option value="Resource_uri" >Resource URI</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <input type="button" id="b_:ops1/7/2" class='btn_clone' value="+ Add Output Private Request Object" data-inline="true" /><br />
+                            <div id="example_resp">
+                                <h4>
+                                    3.3.5.2 Input Request Example
+                                </h4>
+                                <table id="t_:ops1/7/3" class='tbl_clone' data-role="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Type:</th>
+                                            <th>Example:</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text" name=":ops1/7/3/1_type" placeholder="Example Type e.g. JSON"/></td>
+                                            <td ><textarea name=":ops1/7/3/1_example" placeholder="e.g. PUT /v1/subscribers/privacy HTTP/1.1"></textarea></td>
+                                    </tbody>
+                                </table>
+                                <input type="button" id="b_:ops1/7/3" value="+ Add Example" class='btn_clone' data-inline="true" />
+                            </div>
+                            <h4>
+                                3.3.7 HTTP Response Code
+                            </h4>
+                            <table id="http_resp_code" data-role="table" class="ui-responsive table-stroke">
                                 <thead>
                                     <tr>
-                                        <th>Type:</th>
-                                        <th>Example:</th>
+                                        <th>Code</th>
+                                        <th>Message</th>
+                                        <th>Description</th>
+                                    </tr>
+                                    <tr>
+                                        <td>200</td>
+                                        <td><div contenteditable="true">Ok</div></td>
+                                        <td><div contenteditable="true">Complete success – This code is used for complete (change PUT) success case only.</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>206</td>
+                                        <td><div contenteditable="true">Partial</div></td>
+                                        <td><div contenteditable="true">Partial success – This code is used for the partial success case only.</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>204</td>
+                                        <td><div contenteditable="true">No Content</div></td>
+                                        <td><div contenteditable="true">Successful response and the response does not include an entity.</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>401</td>
+                                        <td><div contenteditable="true">Unauthorized</div></td>
+                                        <td><div contenteditable="true">Authentication failed or was not provided.</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>403</td>
+                                        <td><div contenteditable="true">Forbidden</div></td>
+                                        <td><div contenteditable="true">Access permission error.</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>405</td>
+                                        <td><div contenteditable="true">Method Not Allowed</div></td>
+                                        <td><div contenteditable="true">A request was made of a resource using a request method not supported by that resource (e.g., using PUT on a REST resource that only supports POST).</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>408</td>
+                                        <td><div contenteditable="true">Request Timeout</div></td>
+                                        <td><div contenteditable="true">The client did not produce a request within the time that the server was prepared to wait. The client MAY repeat the request without modifications at any later time.</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>500</td>
+                                        <td><div contenteditable="true">Internal Server Error</div></td>
+                                        <td><div contenteditable="true">The server encountered an internal error or timed out; please retry.</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>503</td>
+                                        <td><div contenteditable="true">Service Unavailable</div></td>
+                                        <td><div contenteditable="true">The server is currently unable to receive requests; please retry.</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>504</td>
+                                        <td><div contenteditable="true">Gateway Timeout</div></td>
+                                        <td><div contenteditable="true">The server, while acting as a gateway or proxy, did not receive a timely response from the upstream server specified by the URI (e.g. HTTP, FTP, LDAP) or some other auxiliary server (e.g. DNS) it needed to access in attempting to complete the request.</div></td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><input type="text" name=":ops1/7/3/1_type" placeholder="Example Type e.g. JSON"/></td>
-                                        <td ><textarea name=":ops1/7/3/1_example" placeholder="e.g. PUT /v1/subscribers/privacy HTTP/1.1"></textarea></td>
                                 </tbody>
                             </table>
-                            <input type="button" id="b_:ops1/7/3" value="+ Add Example" class='btn_clone' data-inline="true" />
                         </div>
-                        <h4>
-                            3.3.7 HTTP Response Code
-                        </h4>
-                        <table id="http_resp_code" data-role="table" class="ui-responsive table-stroke">
-                            <thead>
-                                <tr>
-                                    <th>Code</th>
-                                    <th>Message</th>
-                                    <th>Description</th>
-                                </tr>
-                                <tr>
-                                    <td>200</td>
-                                    <td><div contenteditable="true">Ok</div></td>
-                                    <td><div contenteditable="true">Complete success – This code is used for complete (change PUT) success case only.</div></td>
-                                </tr>
-                                <tr>
-                                    <td>206</td>
-                                    <td><div contenteditable="true">Partial</div></td>
-                                    <td><div contenteditable="true">Partial success – This code is used for the partial success case only.</div></td>
-                                </tr>
-                                <tr>
-                                    <td>204</td>
-                                    <td><div contenteditable="true">No Content</div></td>
-                                    <td><div contenteditable="true">Successful response and the response does not include an entity.</div></td>
-                                </tr>
-                                <tr>
-                                    <td>401</td>
-                                    <td><div contenteditable="true">Unauthorized</div></td>
-                                    <td><div contenteditable="true">Authentication failed or was not provided.</div></td>
-                                </tr>
-                                <tr>
-                                    <td>403</td>
-                                    <td><div contenteditable="true">Forbidden</div></td>
-                                    <td><div contenteditable="true">Access permission error.</div></td>
-                                </tr>
-                                <tr>
-                                    <td>405</td>
-                                    <td><div contenteditable="true">Method Not Allowed</div></td>
-                                    <td><div contenteditable="true">A request was made of a resource using a request method not supported by that resource (e.g., using PUT on a REST resource that only supports POST).</div></td>
-                                </tr>
-                                <tr>
-                                    <td>408</td>
-                                    <td><div contenteditable="true">Request Timeout</div></td>
-                                    <td><div contenteditable="true">The client did not produce a request within the time that the server was prepared to wait. The client MAY repeat the request without modifications at any later time.</div></td>
-                                </tr>
-                                <tr>
-                                    <td>500</td>
-                                    <td><div contenteditable="true">Internal Server Error</div></td>
-                                    <td><div contenteditable="true">The server encountered an internal error or timed out; please retry.</div></td>
-                                </tr>
-                                <tr>
-                                    <td>503</td>
-                                    <td><div contenteditable="true">Service Unavailable</div></td>
-                                    <td><div contenteditable="true">The server is currently unable to receive requests; please retry.</div></td>
-                                </tr>
-                                <tr>
-                                    <td>504</td>
-                                    <td><div contenteditable="true">Gateway Timeout</div></td>
-                                    <td><div contenteditable="true">The server, while acting as a gateway or proxy, did not receive a timely response from the upstream server specified by the URI (e.g. HTTP, FTP, LDAP) or some other auxiliary server (e.g. DNS) it needed to access in attempting to complete the request.</div></td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                    </form>
-
-
-                </div><!-- end of input_form -->
-                <input type="button" id="form_op_01_clear" value="Clear All" data-icon="delete" />
-                <input type="button" id="btn_download" value="Download Word Document" />
-
+                    </div><!-- end of input_form -->
+                    <input type="button" id="form_op_01_clear" value="Clear All" data-icon="delete" />
+                    <input type="submit" value="Submit Form" />
+                </form>
+                <div id="output"></div>
             </div> <!-- end of content -->
             <div id="ft">
-
                 <div id="powered_by"><p>RTF Generator</p></div>
-
             </div> <!-- end of ft -->
         </div> <!-- end of page_container -->
     </body>

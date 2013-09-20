@@ -1,4 +1,4 @@
-rtf_gen
+RTF Document Generator
 =======
 
 API Specification RTF Documents Generator
