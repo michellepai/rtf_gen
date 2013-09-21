@@ -1,22 +1,39 @@
 $(document).ready(function() {
-
     var ls = window.localStorage;
-    var opsCount = 2;
+    
+    if (ls.getItem('1opsCount') !== null) {
+        opsCount = ls.getItem('1opsCount');
+        //alert(opsCount);
+        for(i=0;i<(opsCount-1);i++){
+            $('#op_summary tr').eq(1).clone().find('input').val('').end()
+                .appendTo('#op_summary')
+                .find("*[name]")
+                .each(function() {
+            $(this).attr("name", $(this).attr("name").replace(($(this).attr("name").charAt(4)), (i+2)));
+        });   
+        }
+    }
     $('#add_op').click(function() {
+        opsCount++;
         $('#op_summary tr').eq(1).clone().find('input').val('').end()
                 .appendTo('#op_summary')
                 .find("*[name]")
                 .each(function() {
             $(this).attr("name", $(this).attr("name").replace(($(this).attr("name").charAt(4)), opsCount));
         });
-        opsCount++;
+        ls.setItem('1opsCount', opsCount);
+        
     });
-
-//need to find a way to perform better ops count
+    $('#rm_op').click(function() {
+        opsCount--;
+        $('#op_summary tr').last('tr').remove();
+        ls.setItem('1opsCount', opsCount);
+    });
+    //console.log('opsCount: ' + (ls.getItem('1opsCount')));
 
     $('.hide').css('display', 'none');
     $('#gen_form').click(function() {
-        for (var i = 1; i <= 4; i++) {
+        for (var i = 1; i <= opsCount; i++) {
             cloneDiv = $('#default_operation').clone();
             cloneDiv.appendTo('#input_form')
                     //.prepend('<h2>' + ls.getItem('operations/form_name:operations:ops' + i + '_name') + '</h2>')
