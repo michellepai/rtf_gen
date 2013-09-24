@@ -3,7 +3,6 @@ $(document).ready(function() {
 
     if (ls.getItem('1opsCount') !== null) {
         opsCount = ls.getItem('1opsCount');
-        //alert(opsCount);
         for (i = 0; i < (opsCount - 1); i++) {
             $('#op_summary tr').eq(1).clone().find('input').val('').end()
                     .appendTo('#op_summary')
@@ -31,14 +30,13 @@ $(document).ready(function() {
         $('#op_summary tr').last('tr').remove();
         ls.setItem('1opsCount', opsCount);
     });
-    //console.log('opsCount: ' + (ls.getItem('1opsCount')));
 
     $('.hide').css('display', 'none');
     $('#gen_form').click(function() {
         for (var i = 1; i <= opsCount; i++) {
             cloneDiv = $('#default_operation').clone();
             cloneDiv.appendTo('#input_form')
-                    //.prepend('<h2>' + ls.getItem('operations/form_name:operations:ops' + i + '_name') + '</h2>')
+                    .prepend('<h2>' + ls.getItem('spec_form/spec_form:ops' + i + '_name') + '</h2>')
                     .css('display', 'block')
                     .attr('id', 'operation_' + i)
                     .sisyphus({timeout: 5});
@@ -82,24 +80,6 @@ $(document).ready(function() {
         });
     });
 
-
-    (function($) {
-        $.ucfirst = function(str) {
-            var text = str;
-            var parts = text.split(' '),
-                    len = parts.length,
-                    i, words = [];
-            for (i = 0; i < len; i++) {
-                var part = parts[i];
-                var first = part[0].toUpperCase();
-                var rest = part.substring(1, part.length);
-                var word = first + rest;
-                words.push(word);
-            }
-            return words.join(' ');
-        };
-    })(jQuery);
-
     $(function() {
         $("form").sisyphus({
             timeout: 1000});
@@ -113,12 +93,28 @@ $(document).ready(function() {
         }
         $('form')[0].reset();
     });
+jQuery.download = function(url, data, method){
+	//url and data options required
+	if( url && data ){ 
+		//data can be string of parameters or array/object
+		data = typeof data == 'string' ? data : jQuery.param(data);
+		//split params into form inputs
+		var inputs = '';
+		jQuery.each(data.split('&'), function(){ 
+			var pair = this.split('=');
+			inputs+='<input type="hidden" name="'+ pair[0] +'" value="'+ pair[1] +'" />'; 
+		});
+		//send request
+		jQuery('<form action="'+ url +'" method="'+ (method||'post') +'">'+inputs+'</form>')
+		.appendTo('body').submit().remove();
+	};
+};
 
-    $('#spec_form').submit(function() {
-        $(this).ajaxSubmit({
-            target: '#output'
-        });
-        return false;
-    });
+//    $('#spec_form').submit(function() {
+//        $(this).ajaxSubmit({
+//            target: '#output'
+//        });
+//        return false;
+//    });
 });
 

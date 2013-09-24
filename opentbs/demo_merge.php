@@ -1,10 +1,10 @@
 <?php
 
-// Display this code source if asked.
 if (isset($_GET['source'])) exit('<!DOCTYPE HTML><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>OpenTBS plug-in for TinyButStrong - demo source</title></head><body>'.highlight_file(__FILE__,true).'</body></html>');
 
 // Read user choices
 if (!isset($_POST['btn_go'])) exit("You must use <a href='demo.html'>demo.html</a>");
+
 
 // Retrieve the template to open
 $template = (isset($_POST['tpl'])) ? $_POST['tpl'] : '';
@@ -19,3 +19,4 @@ if (!file_exists($template)) exit("The asked template does not exist.");
 $script = $info['filename'].'.php';
 include($script);
 
+?>

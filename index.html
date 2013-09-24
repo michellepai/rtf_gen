@@ -6,11 +6,16 @@
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
         <link rel="stylesheet" href="style.css" />
         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-                <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
-                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
-                <script src="http://malsup.github.com/jquery.form.js"></script>
-                <script src="js/js.js"></script>
-                <script src="js/sisyphus.min.js"></script>
+        <script>
+            $(document).bind("mobileinit", function() {
+                $.mobile.ajaxEnabled = false;
+            });
+        </script>
+        <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
+        <script src="http://malsup.github.com/jquery.form.js"></script>
+        <script src="js/js.js"></script>
+        <script src="js/sisyphus.min.js"></script>
     </head>
     <body>
         <div id="pageContainer" class="pageContainer" data-theme="a">
@@ -19,8 +24,11 @@
                 <div class="contentHeading">
                     <h1>RTF Document Generator UI</h1>  
                 </div><!-- end of contentHeading -->
+                <form id="spec_form" name="/spec_form" action="opentbs/demo_merge.php" method="post">
+                    <input type="hidden" name="yourname" value="text" />, 
+                    <input type="hidden" name="tpl" value="demo_ms_word.docx" />
+                    <input type="hidden" name="btn_go" value="demo_ms_word.docx" />
 
-                <form id="spec_form" name="/spec_form" action="json-echo.php" method="post">
                     <div id="input_form">
                         <h3>
                             3.2 API Version Status
@@ -401,7 +409,7 @@
                         </div>
                     </div><!-- end of input_form -->
                     <input type="button" id="form_op_01_clear" value="Clear All" data-icon="delete" />
-                    <input type="submit" value="Submit Form" name="btn_go" />
+                    <input type="submit" name="btn_go" value="Submit Form" />
                 </form>
                 <div id="output"></div>
             </div> <!-- end of content -->
