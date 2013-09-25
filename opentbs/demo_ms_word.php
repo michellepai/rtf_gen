@@ -27,10 +27,15 @@ $status = (isset($_POST[':ops1status'])) ? $_POST[':ops1status'] : '';
 $status = trim(''.$status);
 if ($status=='') $status = "(No Status)";
 
-// A recordset for merging tables
+$q = 1;
 $data = array();
-$data[] = array('api_name'=> 'A', 'url'=>'Sandra' , 'verb'=>'Hill', 'type'=>'1523d');
-
+do{ 
+     $data[] = array('opname'=> $_POST[":ops".$q."_name"], 
+                      'url'=> $_POST[":ops".$q."_url"], 
+                     'verb'=>'Hill', 
+                     'type'=>'1523d');
+      $q++;
+      }while(isset($_POST[":ops".$q."_name"]));
 // Other single data items
 $x_num = 3152.456;
 $x_pc = 0.2567;
