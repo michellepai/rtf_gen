@@ -82,7 +82,7 @@ $(document).ready(function() {
 
     $(function() {
         $("form").sisyphus({
-            timeout: 1000});
+            timeout: 3});
     });
 
     $("#form_op_01_clear").click(function() {
