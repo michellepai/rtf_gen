@@ -12,19 +12,24 @@ $TBS->Plugin(TBS_INSTALL, OPENTBS_PLUGIN); // load the OpenTBS plugin
 // Prepare some data for the demo
 // ------------------------------
 
-// Retrieve the user name to display
-$yourname = (isset($_POST['yourname'])) ? $_POST['yourname'] : '';
-$yourname = trim(''.$yourname);
-if ($yourname=='') $yourname = "(no name)";
+// API name
+$apiname = (isset($_POST[':ops1_api_name'])) ? $_POST[':ops1_api_name'] : '';
+$apiname = trim(''.$apiname);
+if ($apiname=='') $apiname = "(No API Name)";
+$yourname ='';
+//Version 
+$version = (isset($_POST[':ops1_version'])) ? $_POST[':ops1_version'] : '';
+$version = trim(''.$version);
+if ($version=='') $version = "(No Version)";
+
+//status
+$status = (isset($_POST[':ops1status'])) ? $_POST[':ops1status'] : '';
+$status = trim(''.$status);
+if ($status=='') $status = "(No Status)";
 
 // A recordset for merging tables
 $data = array();
-$data[] = array('rank'=> 'A', 'firstname'=>'Sandra' , 'name'=>'Hill'      , 'number'=>'1523d', 'score'=>200, 'email_1'=>'sh@tbs.com',  'email_2'=>'sandra@tbs.com',  'email_3'=>'s.hill@tbs.com');
-$data[] = array('rank'=> 'A', 'firstname'=>'Roger'  , 'name'=>'Smith'     , 'number'=>'1234f', 'score'=>800, 'email_1'=>'rs@tbs.com',  'email_2'=>'robert@tbs.com',  'email_3'=>'r.smith@tbs.com' );
-$data[] = array('rank'=> 'B', 'firstname'=>'William', 'name'=>'Mac Dowell', 'number'=>'5491y', 'score'=>130, 'email_1'=>'wmc@tbs.com', 'email_2'=>'william@tbs.com', 'email_3'=>'w.m.dowell@tbs.com' );
-$data[] = array('rank'=> 'B', 'firstname'=>'William', 'name'=>'Mac Dowell', 'number'=>'5491y', 'score'=>130, 'email_1'=>'wmc@tbs.com', 'email_2'=>'william@tbs.com', 'email_3'=>'w.m.dowell@tbs.com' );
-$data[] = array('rank'=> 'B', 'firstname'=>'William', 'name'=>'Mac Dowell', 'number'=>'5491y', 'score'=>130, 'email_1'=>'wmc@tbs.com', 'email_2'=>'william@tbs.com', 'email_3'=>'w.m.dowell@tbs.com' );
-$data[] = array('rank'=> 'B', 'firstname'=>'William', 'name'=>'Mac Dowell', 'number'=>'5491y', 'score'=>130, 'email_1'=>'wmc@tbs.com', 'email_2'=>'william@tbs.com', 'email_3'=>'w.m.dowell@tbs.com' );
+$data[] = array('api_name'=> 'A', 'url'=>'Sandra' , 'verb'=>'Hill', 'type'=>'1523d');
 
 // Other single data items
 $x_num = 3152.456;

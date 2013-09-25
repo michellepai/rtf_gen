@@ -110,7 +110,7 @@ jQuery.download = function(url, data, method){
 	};
 };
 
-//    $('#spec_form').submit(function() {
+//    $('#post_out').submit(function() {
 //        $(this).ajaxSubmit({
 //            target: '#output'
 //        });
