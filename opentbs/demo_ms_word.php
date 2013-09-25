@@ -31,11 +31,12 @@ $q = 1;
 $data = array();
 do{ 
      $data[] = array('opname'=> $_POST[":ops".$q."_name"], 
-                      'url'=> $_POST[":ops".$q."_url"], 
-                     'verb'=>'Hill', 
-                     'type'=>'1523d');
+                      'url'=> $_POST[":ops".$q."_base_url"], 
+                     'verb'=>$_POST[":ops".$q."_verb"], 
+                     'type'=>$_POST[":ops".$q."_type_desc"]);
       $q++;
       }while(isset($_POST[":ops".$q."_name"]));
+      
 // Other single data items
 $x_num = 3152.456;
 $x_pc = 0.2567;
@@ -58,7 +59,7 @@ $TBS->MergeBlock('a,b', $data);
 
 // Define the name of the output file
 $save_as = (isset($_POST['save_as']) && (trim($_POST['save_as'])!=='') && ($_SERVER['SERVER_NAME']=='localhost')) ? trim($_POST['save_as']) : '';
-$output_file_name = str_replace('.', '_'.date('Y-m-d').$save_as.'.', $template);
+$output_file_name = $apiname.'_'.date('Y-m-d');
 if ($save_as==='') {
 	// Output the result as a downloadable file (only streaming, no data saved in the server)
 	$TBS->Show(OPENTBS_DOWNLOAD, $output_file_name); // Also merges all [onshow] automatic fields.
