@@ -1,4 +1,5 @@
 <?php
+ini_set('memory_limit', '2048M');
 
 // Include classes
 include_once('tbs_class.php'); // Load the TinyButStrong template engine
@@ -13,6 +14,7 @@ $apiname = trim('' . $apiname);
 if ($apiname == '')
     $apiname = "(No API Name)";
 $yourname = '';
+
 //Version 
 $version = (isset($_POST[':ops1_version'])) ? $_POST[':ops1_version'] : '';
 $version = trim('' . $version);
@@ -52,6 +54,53 @@ $summary = trim('' . $summary);
 if ($summary == '')
     $summary = "(No Function Behavior)";
 
+
+$i = 1;
+$op_detail = array();
+do{
+    $op_detail[$i] = array(
+        ':ops'.$i.'/1' => $_POST[":ops" . $i . "/1"],
+        ':ops'.$i.'/2' => $_POST[":ops" . $i . "/2"],
+        ':ops'.$i.'/3' => $_POST[":ops" . $i . "/3"],
+        ':ops'.$i.'/4' => array('auth' => $_POST[":ops" . $i . "/4_auth"],
+                               'reqi'  => $_POST[":ops" . $i . "/4_reqi"],
+                               'scope' => $_POST[":ops" . $i . "/4_scope"],
+                               'dsc'   => $_POST[":ops" . $i . "/4_dsc"]),
+        ':ops'.$i.'/5' => array('request' => $_POST[":ops" . $i . "/5_req"],
+                               'response' => $_POST[":ops" . $i . "/5_resp"])
+        );
+    
+        $count = 1;
+        do{
+            $op_detail[$i][':ops'.$i.'/6']['sec1']['param'.$count] = array(
+                'param'    => $_POST[":ops" . $i . "/6/1/" .$count. "_param"],
+                'type'     => $_POST[":ops" . $i . "/6/1/" .$count. "_type"],
+                'required' => $_POST[":ops" . $i . "/6/1/" .$count. "_required"],
+                'desc'     => $_POST[":ops" . $i . "/6/1/" .$count. "_desc"],
+                'location' => $_POST[":ops" . $i . "/6/1/" .$count. "_location"]);
+        $count++;
+          }while(isset($_POST[":ops" . $i . "/6/1/" .$count. "_param"]));
+          $op_detail[$i][':ops'.$i.'/6']['sec2']['name'] = $_POST[":ops" . $i . "/6/2/1_name"];
+         
+        $count = 1;  
+        do{
+            $op_detail[$i][':ops'.$i.'/6']['sec2']['param'.$count] = array(
+//                'param'    => $_POST[":ops" . $i . "/6/2/" .$count. "_param"],
+//                'type'     => $_POST[":ops" . $i . "/6/2/" .$count. "_type"],
+                'required' => $_POST[":ops" . $i . "/6/2/" .$count. "_required"],
+                'desc'     => $_POST[":ops" . $i . "/6/2/" .$count. "_desc"],
+                'location' => $_POST[":ops" . $i . "/6/2/" .$count. "_location"]);
+        $count++;
+          }while(isset($_POST[":ops" . $i . "/6/2/" .$count. "_param"]));
+                                        
+ 
+
+    $i++;
+}while(isset($_POST[":ops" . $i . "/1"]));
+echo "Memory Usage: " . (memory_get_usage()/1048576) . " MB \n";
+var_dump($op_detail);
+echo "Memory Usage: " . (memory_get_usage()/1048576) . " MB \n";
+echo memory_get_peak_usage();
 
 // Other single data items
 $x_num = 3152.456;
