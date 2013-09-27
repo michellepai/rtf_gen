@@ -97,10 +97,10 @@ do{
 
     $i++;
 }while(isset($_POST[":ops" . $i . "/1"]));
-echo "Memory Usage: " . (memory_get_usage()/1048576) . " MB \n";
-var_dump($op_detail);
-echo "Memory Usage: " . (memory_get_usage()/1048576) . " MB \n";
-echo memory_get_peak_usage();
+//echo "Memory Usage: " . (memory_get_usage()/1048576) . " MB \n";
+//var_dump($op_detail);
+//echo "Memory Usage: " . (memory_get_usage()/1048576) . " MB \n";
+//echo memory_get_peak_usage();
 
 // Other single data items
 $x_num = 3152.456;
@@ -118,6 +118,7 @@ $template = 'demo_ms_word.docx';
 $TBS->LoadTemplate($template); // Also merge some [onload] automatic fields (depends of the type of document).
 // Merge data in the body of the document
 $TBS->MergeBlock('a,b', $data);
+$TBS->MergeBlock('op_detail,b', $op_detail);
 
 
 // Define the name of the output file
