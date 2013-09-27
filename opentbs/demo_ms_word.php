@@ -69,7 +69,6 @@ do{
         ':ops'.$i.'/5' => array('request' => $_POST[":ops" . $i . "/5_req"],
                                'response' => $_POST[":ops" . $i . "/5_resp"])
         );
-    
         $count = 1;
         do{
             $op_detail[$i][':ops'.$i.'/6']['sec1']['param'.$count] = array(
@@ -81,26 +80,61 @@ do{
         $count++;
           }while(isset($_POST[":ops" . $i . "/6/1/" .$count. "_param"]));
           $op_detail[$i][':ops'.$i.'/6']['sec2']['name'] = $_POST[":ops" . $i . "/6/2/1_name"];
-         
         $count = 1;  
         do{
             $op_detail[$i][':ops'.$i.'/6']['sec2']['param'.$count] = array(
-//                'param'    => $_POST[":ops" . $i . "/6/2/" .$count. "_param"],
-//                'type'     => $_POST[":ops" . $i . "/6/2/" .$count. "_type"],
+                'param'    => $_POST[":ops" . $i . "/6/2/" .$count. "_param"],
+                'type'     => $_POST[":ops" . $i . "/6/2/" .$count. "_type"],
                 'required' => $_POST[":ops" . $i . "/6/2/" .$count. "_required"],
                 'desc'     => $_POST[":ops" . $i . "/6/2/" .$count. "_desc"],
                 'location' => $_POST[":ops" . $i . "/6/2/" .$count. "_location"]);
         $count++;
           }while(isset($_POST[":ops" . $i . "/6/2/" .$count. "_param"]));
-                                        
- 
-
-    $i++;
+          $count = 1;  
+        do{
+            $op_detail[$i][':ops'.$i.'/6']['sec3']['count'.$count] = array(
+                'type'    => $_POST[":ops" . $i . "/6/3/" .$count. "_type"],
+                'example' => $_POST[":ops" . $i . "/6/3/" .$count. "_example"]);
+        $count++;
+          }while(isset($_POST[":ops" . $i . "/6/3/" .$count. "_type"]));
+    //7
+          $count = 1;
+        do{
+            $op_detail[$i][':ops'.$i.'/7']['sec1']['param'.$count] = array(
+                'param'    => $_POST[":ops" . $i . "/7/1/" .$count. "_param"],
+                'type'     => $_POST[":ops" . $i . "/7/1/" .$count. "_type"],
+                'required' => $_POST[":ops" . $i . "/7/1/" .$count. "_required"],
+                'desc'     => $_POST[":ops" . $i . "/7/1/" .$count. "_desc"],
+                'location' => $_POST[":ops" . $i . "/7/1/" .$count. "_location"]);
+        $count++;
+          }while(isset($_POST[":ops" . $i . "/7/1/" .$count. "_param"]));
+          $op_detail[$i][':ops'.$i.'/7']['sec2']['name'] = $_POST[":ops" . $i . "/7/2/1_name"];
+        $count = 1;  
+        do{
+            $op_detail[$i][':ops'.$i.'/7']['sec2']['param'.$count] = array(
+                'param'    => $_POST[":ops" . $i . "/7/2/" .$count. "_param"],
+                'type'     => $_POST[":ops" . $i . "/7/2/" .$count. "_type"],
+                'required' => $_POST[":ops" . $i . "/7/2/" .$count. "_required"],
+                'desc'     => $_POST[":ops" . $i . "/7/2/" .$count. "_desc"],
+                'location' => $_POST[":ops" . $i . "/7/2/" .$count. "_location"]);
+        $count++;
+          }while(isset($_POST[":ops" . $i . "/7/2/" .$count. "_param"]));
+          $count = 1;  
+        do{
+            $op_detail[$i][':ops'.$i.'/7']['sec3']['count'.$count] = array(
+                'type'    => $_POST[":ops" . $i . "/7/3/" .$count. "_type"],
+                'example' => $_POST[":ops" . $i . "/7/3/" .$count. "_example"]);
+        $count++;
+          }while(isset($_POST[":ops" . $i . "/7/3/" .$count. "_type"]));
+    
+          
+          
+          $i++;   
 }while(isset($_POST[":ops" . $i . "/1"]));
-//echo "Memory Usage: " . (memory_get_usage()/1048576) . " MB \n";
+
+
 //var_dump($op_detail);
-//echo "Memory Usage: " . (memory_get_usage()/1048576) . " MB \n";
-//echo memory_get_peak_usage();
+
 
 // Other single data items
 $x_num = 3152.456;
@@ -114,11 +148,11 @@ $x_delete = 1;
 // Load the template
 // -----------------
 
-$template = 'demo_ms_word.docx';
+$template = 'temp.docx';
 $TBS->LoadTemplate($template); // Also merge some [onload] automatic fields (depends of the type of document).
 // Merge data in the body of the document
 $TBS->MergeBlock('a,b', $data);
-$TBS->MergeBlock('op_detail,b', $op_detail);
+$TBS->MergeBlock('op,b', $op_detail);
 
 
 // Define the name of the output file
