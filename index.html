@@ -219,7 +219,7 @@
                                     </tbody>
                                 </table>
                                 <input type="button" id="b_:ops1/6/2" class='btn_clone' value="+ Add Object Parameter" data-inline="true"  />
-<!--                                <input type="button" id="add_input_obj" value="+ Add Object" data-inline="true"  />-->
+                                <!--                                <input type="button" id="add_input_obj" value="+ Add Object" data-inline="true"  />-->
                             </div>
                             <div id="example_req">
                                 <h4>
@@ -406,9 +406,14 @@
                                 <tbody>
                                 </tbody>
                             </table>
-                        </div>
+                        </div><!-- end of default_operation -->
                     </div><!-- end of input_form -->
-                    <input type="button" id="form_op_01_clear" value="Clear All" data-icon="delete" />
+                    <select name="download_method">
+                        <option value="docx">Word Document</option>
+                        <option value="csv">CSV</option>
+                        <option value="JSON">JSON</option>
+                    </select>
+                    <input type="button" id="form_op_01_clear" value="Clear All" />
                     <input type="submit" name="btn_go" value="Submit Form" />
                 </form>
                 <div id="output"></div>
