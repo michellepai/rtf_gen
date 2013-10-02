@@ -19,7 +19,7 @@
     </head>
     <body>
         <div id="pageContainer" class="pageContainer" data-theme="a">
-
+            <div id="toTop">^ Back to Top</div>
             <div class="content">
                 <div class="contentHeading">
                     <h1>RTF Document Generator UI</h1>  
@@ -33,6 +33,7 @@
                         <h3>
                             3.2 API Version Status
                         </h3>
+
                         <table id="version" data-role="table" class="ui-responsive table-stroke">
                             <thead>
                                 <tr>
@@ -46,6 +47,7 @@
                                     <th><input type="text" name=":ops1_api_name" placeholder="e.g. Privacy Record Management" /></th>
                                     <td><input type="text" name=":ops1_version" placeholder="e.g. 1.3 " /></td>
                                     <td><input type="text" name=":ops1status" placeholder="e.g. Initial" /></td>
+
                                 </tr>
                             </tbody>
                         </table>
@@ -60,11 +62,12 @@
                                     <th>Resource Base URL</th>
                                     <th>HTTP Verb</th>
                                     <th>Operation Type</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input name=":ops1_name" type="text" /></td>
+                                    <td><input name=":ops1_name" type="text" class='title'/></td>
                                     <td><textarea name=":ops1_base_url" placeholder="e.g. /subscriber/consent" ></textarea></td>
                                     <td>
                                         <select name=":ops1_verb" class="form-alpha">
@@ -74,8 +77,12 @@
                                             <option value="PUT" >PUT</option>
                                             <option value="DELETE" >DELETE</option>
                                         </select>
+
                                     </td>
+
                                     <td><input type="text" name=":ops1_type_desc" placeholder="e.g. Method"  /></td>
+                                    <td><a href='#' class='go' name=":ops1_go" >>></a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -84,6 +91,7 @@
 
                         <!--<input type="button" id="gen_form" value="Insert Operation Details" />-->
                         <div id="default_operation" class="hide">
+                            <a name='here' ><h2>Operation</h2></a>
                             <h4>3.3.1 Function Behavior: </h4>
                             <textarea cols="40" rows="8" name=":ops1/1" placeholder="This Method is used to...." ></textarea>
                             <h4>3.3.2 Call Flow: </h4>
@@ -411,7 +419,7 @@
                     <select name="download_method">
                         <option value="docx">Word Document</option>
                         <option value="csv">CSV</option>
-                        <option value="JSON">JSON</option>
+                        <option value="json">JSON</option>
                     </select>
                     <input type="button" id="form_op_01_clear" value="Clear All" />
                     <input type="submit" name="btn_go" value="Submit Form" />

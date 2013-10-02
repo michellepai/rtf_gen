@@ -21,14 +21,16 @@ if (isset($_POST['download_method']) && $_POST['download_method'] == 'docx') {
 
 //cvs
 if (isset($_POST['download_method']) && $_POST['download_method'] == 'csv') {
-       header('Content-Type: text/csv; charset=utf-8');
+    header('Content-Type: text/csv; charset=utf-8');
     header('Content-Disposition: attachment; filename=api_spec.csv');
-
-
-    foreach($_POST as $p){
-        echo $p.',';
+    foreach ($_POST as $p) {
+        echo $p . ',';
     }
+}
 
-    fclose($fp);
+if (isset($_POST['download_method']) && $_POST['download_method'] == 'json') {
+    header('Content-Type: application/json; charset=utf-8');
+    header('Content-Disposition: attachment; filename=api_spec.txt');
+    echo json_encode($_POST);
 }
 ?>
