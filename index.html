@@ -25,7 +25,7 @@
                     <h1>RTF Document Generator UI</h1>  
                 </div><!-- end of contentHeading -->
                 <form id="spec_form" name="/spec_form" action="opentbs/demo_merge.php" method="post">
-                    <input type="hidden" name="yourname" value="text" />, 
+                    <input type="hidden" name="yourname" value="text" />
                     <input type="hidden" name="tpl" value="demo_ms_word.docx" />
                     <input type="hidden" name="btn_go" value="demo_ms_word.docx" />
 
@@ -82,7 +82,7 @@
                         <input type="button" id="add_op" value="+ Add Operation" data-inline="true" />
                         <input type="button" id="rm_op" value="+ Remove Operation" data-inline="true" />
 
-                        <input type="button" id="gen_form" value="Insert Operation Details" />
+                        <!--<input type="button" id="gen_form" value="Insert Operation Details" />-->
                         <div id="default_operation" class="hide">
                             <h4>3.3.1 Function Behavior: </h4>
                             <textarea cols="40" rows="8" name=":ops1/1" placeholder="This Method is used to...." ></textarea>
@@ -219,7 +219,7 @@
                                     </tbody>
                                 </table>
                                 <input type="button" id="b_:ops1/6/2" class='btn_clone' value="+ Add Object Parameter" data-inline="true"  />
-                                <input type="button" id="add_input_obj" value="+ Add Object" data-inline="true"  />
+                                <!--                                <input type="button" id="add_input_obj" value="+ Add Object" data-inline="true"  />-->
                             </div>
                             <div id="example_req">
                                 <h4>
@@ -406,9 +406,14 @@
                                 <tbody>
                                 </tbody>
                             </table>
-                        </div>
+                        </div><!-- end of default_operation -->
                     </div><!-- end of input_form -->
-                    <input type="button" id="form_op_01_clear" value="Clear All" data-icon="delete" />
+                    <select name="download_method">
+                        <option value="docx">Word Document</option>
+                        <option value="csv">CSV</option>
+                        <option value="json">JSON</option>
+                    </select>
+                    <input type="button" id="form_op_01_clear" value="Clear All" />
                     <input type="submit" name="btn_go" value="Submit Form" />
                 </form>
                 <div id="output"></div>
